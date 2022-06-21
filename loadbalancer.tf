@@ -8,30 +8,30 @@ resource "volterra_namespace" "this" {
   name  = var.volterra_namespace
 }
 
-resource "volterra_origin_pool" "this" {
-  for_each               = toset(var.eks_only ? [] : [var.skg_name])
-  name                   = format("%s-server", var.skg_name)
-  namespace              = local.namespace
-  description            = format("Origin pool pointing to frontend k8s service running on RE's")
-  loadbalancer_algorithm = "ROUND ROBIN"
-  origin_servers {
-    k8s_service {
-      inside_network  = true
-      outside_network = false
-      vk8s_networks   = false
-      service_name    = "frontend.${local.namespace}"
-      site_locator {
-        site {
-          name      = volterra_aws_vpc_site.this[each.key].name
-          namespace = "system"
-        }
-      }
-    }
-  }
-  port               = 80
-  no_tls             = true
-  endpoint_selection = "LOCAL_PREFERRED"
-}
+#resource "volterra_origin_pool" "this" {
+#  for_each               = toset(var.eks_only ? [] : [var.skg_name])
+#  name                   = format("%s-server", var.skg_name)
+#  namespace              = local.namespace
+#  description            = format("Origin pool pointing to frontend k8s service running on RE's")
+#  loadbalancer_algorithm = "ROUND ROBIN"
+#  origin_servers {
+#    k8s_service {
+#      inside_network  = true
+#      outside_network = false
+#      vk8s_networks   = false
+#      service_name    = "frontend.${local.namespace}"
+#      site_locator {
+#        site {
+#          name      = volterra_aws_vpc_site.this[each.key].name
+#          namespace = "system"
+#        }
+#      }
+#    }
+#  }
+#  port               = 80
+#  no_tls             = true
+#  endpoint_selection = "LOCAL_PREFERRED"
+#}
 
 resource "volterra_app_firewall" "this" {
   for_each                 = toset(var.eks_only ? [] : [var.skg_name])
