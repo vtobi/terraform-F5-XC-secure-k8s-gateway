@@ -3,7 +3,7 @@ output "kubeconfig_filename" {
   value       = module.eks.kubeconfig_filename
 }
 
-output "app_url" {
-  description = "Domain VIP to access the app deployed on EKS"
-  value       = var.app_domain != "" ? format("https://%s", var.app_domain) : ""
+output "f5_xc_aws_vpc_site" {
+  description = "F5 XC AWS VPC Site"
+  value       = volterra_aws_vpc_site.this[each.key].name
 }
