@@ -1,4 +1,4 @@
-# terraform-volterra-secure-k8s-gateway
+# terraform-F5-XC-secure-k8s-gateway
 
 [![Lint Status](https://github.com/volterraedge/terraform-volterra-secure-k8s-gateway/workflows/Lint/badge.svg)](https://github.com/volterraedge/terraform-volterra-secure-k8s-gateway/actions)
 [![LICENSE](https://img.shields.io/github/license/volterraedge/terraform-volterra-secure-k8s-gateway)](https://github.com/volterraedge/terraform-volterra-secure-k8s-gateway/blob/main/LICENSE)
