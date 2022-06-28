@@ -114,8 +114,6 @@ variable "namespace" {
 
 variable "name" {}
 
-variable "app_fqdn" {}
-
 # This is the VPC CIDR for AWS
 variable "aws_vpc_cidr" {
   default = "192.168.0.0/22"
@@ -155,7 +153,6 @@ module "skg" {
   source              = "volterraedge/secure-k8s-gateway/volterra"
   skg_name            = var.name
   volterra_namespace  = local.namespace
-  app_domain          = var.app_fqdn
   aws_secret_key      = var.aws_secret_key
   aws_access_key      = var.aws_access_key
   aws_region          = var.aws_region
