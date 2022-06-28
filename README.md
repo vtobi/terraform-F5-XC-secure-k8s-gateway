@@ -166,9 +166,6 @@ output "kubeconfig_filename" {
   value = module.skg.kubeconfig_filename
 }
 
-output "app_url" {
-  value = module.skg.app_url
-}
 ```
 
 ### EKS related objects are only created by this module
@@ -247,7 +244,6 @@ module "skg" {
   source              = "volterraedge/secure-k8s-gateway/volterra"
   skg_name            = var.name
   volterra_namespace  = local.namespace
-  app_domain          = ""
   aws_secret_key      = var.aws_secret_key
   aws_access_key      = var.aws_access_key
   aws_region          = var.aws_region
@@ -265,9 +261,7 @@ output "kubeconfig_filename" {
   value = module.skg.kubeconfig_filename
 }
 
-output "app_url" {
-  value = module.skg.app_url
-}
+
 ```
 ---
 
@@ -337,7 +331,6 @@ output "app_url" {
 |------|-------------|------|---------|:--------:|
 | <a name="input_allow_dns_list"></a> [allow\_dns\_list](#input\_allow\_dns\_list) | List of IP prefixes to be allowed | `list(string)` | <pre>[<br>  "8.8.8.8/32"<br>]</pre> | no |
 | <a name="input_allow_tls_prefix_list"></a> [allow\_tls\_prefix\_list](#input\_allow\_tls\_prefix\_list) | Allow TLS prefix list | `list(string)` | <pre>[<br>  "gcr.io",<br>  "storage.googleapis.com",<br>  "docker.io",<br>  "docker.com",<br>  "amazonaws.com"<br>]</pre> | no |
-| <a name="input_app_domain"></a> [app\_domain](#input\_app\_domain) | FQDN for the app. If you have delegated domain `prod.example.com`, then your app\_domain can be `<app_name>.prod.example.com` | `string` | n/a | yes |
 | <a name="input_aws_access_key"></a> [aws\_access\_key](#input\_aws\_access\_key) | AWS Access Key. Programmable API access key needed for creating the site | `string` | n/a | yes |
 | <a name="input_aws_az"></a> [aws\_az](#input\_aws\_az) | AWS Availability Zone in which the site will be created | `string` | n/a | yes |
 | <a name="input_aws_instance_type"></a> [aws\_instance\_type](#input\_aws\_instance\_type) | AWS instance type used for the Volterra site | `string` | `"t3.2xlarge"` | no |
@@ -367,5 +360,4 @@ output "app_url" {
 
 | Name | Description |
 |------|-------------|
-| <a name="output_app_url"></a> [app\_url](#output\_app\_url) | Domain VIP to access the app deployed on EKS |
 | <a name="output_kubeconfig_filename"></a> [kubeconfig\_filename](#output\_kubeconfig\_filename) | EKS kubeconfig file name |
