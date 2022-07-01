@@ -21,4 +21,5 @@ output "eks_cluster_ca_certificate" {
 output "eks_token" {
   description = "EKS token for Kubernetes provider configuration"
   value       = data.aws_eks_cluster_auth.cluster.token
+  sensitive = true
 }
